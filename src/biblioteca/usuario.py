@@ -7,7 +7,6 @@ TODO (Principiantes - Paso 2):
 - Implementar el método __str__ para mostrar la información del usuario.
 """
 
-
 class Usuario:
     """Representa a una persona que puede solicitar préstamos en la biblioteca."""
 
@@ -26,8 +25,8 @@ class Usuario:
         """
         pass  # TODO: Implementar
 
-    def puede_prestar(self) -> bool:
-        """
+    def puede_prestar(self) -> bool: """ Trabaje mija ehhh 
+    
         Verifica si el usuario puede solicitar un nuevo préstamo.
 
         TODO: Contar cuántos préstamos activos tiene el usuario.
@@ -54,3 +53,42 @@ class Usuario:
         "U001 - Ana · préstamos activos: 2"
         """
         pass  # TODO: Implementar
+
+
+class Usuario:
+    """Representa a una persona que puede solicitar préstamos en la biblioteca."""
+
+    def __init__(self, id_usuario: str, nombre: str, limite_prestamos: int = 3) -> None:
+        """
+        Inicializa un nuevo usuario.
+        """
+        # Asignación de atributos
+        self.id_usuario: str = id_usuario
+        self.nombre: str  = nombre
+        self.limite_prestamos: int = limite_prestamos
+        self.prestamos = []  # Lista para almacenar los préstamos del usuario
+       
+
+    def puede_prestar(self) -> bool:
+        """
+        Verifica si el usuario puede solicitar un nuevo préstamo.
+        """
+        # Filtrar préstamos activos (fecha_devolucion es None)
+        prestamos_activos = [
+            prestamo for prestamo in self.prestamos
+            if prestamo.fecha_devolucion is None
+        ]
+
+        # Retornar True si no ha alcanzado el límite
+        return len(prestamos_activos) < self.limite_prestamos
+
+    def __str__(self) -> str:
+        """
+        Devuelve una representación en texto del usuario.
+        """
+        prestamos_activos = [
+            prestamo for prestamo in self.prestamos
+            if prestamo.fecha_devolucion is None
+        ]
+
+        return f"{self.id_usuario} - {self.nombre} · préstamos activos: {len(prestamos_activos)}"
