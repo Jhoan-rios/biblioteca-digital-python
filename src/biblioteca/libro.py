@@ -23,5 +23,5 @@ class Libro:
 
         """ Devuelve una representación en texto del libro"""
 
-    estado = "Prestado" if self.prestado else "Disponible"
-    return f"{self.id_libro}: {self.titulo}: {self.autor}: {self.anio}: {self.genero} -- {estado}"
+        estado = "Prestado" if self.prestado else "Disponible"
+        return f"{self.id_libro}: {self.titulo}: {self.autor}: {self.anio}: {self.genero} -- {estado}"

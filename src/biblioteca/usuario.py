@@ -38,7 +38,7 @@ class Usuario:
         Returns:
             True si el usuario puede pedir más libros, False si ya alcanzó el límite.
         """
-        pass  # TODO: Implementar
+    pass  # TODO: Implementar
 
     def __str__(self) -> str:
         """

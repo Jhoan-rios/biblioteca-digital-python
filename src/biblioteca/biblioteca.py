@@ -52,56 +52,34 @@ class Biblioteca:
         if libro.id_libro in self.catalogo:
             raise ValueError(f"El {libro.id_libro} ya existe.")
         self.catalogo[libro.id_libro] = libro
-            print(f"")
 
-        
-        """
-        Registra un libro en el catálogo.
+        self.indice_por_autor.setdefault(libro.autor, []).append(libro.id_libro)
 
-        TODO:
-        1. Verificar que el id_libro no exista ya en self.catalogo.
-           Si existe, lanzar ValueError("El id_libro ya existe.")
-        2. Agregar el libro al diccionario self.catalogo usando id_libro como clave.
+        self.indice_por_genero.setdefault(libro.genero, []).append(libro.genero)
 
-        TODO (Avanzados - Paso 1):
-        3. Agregar el id_libro a self.indice_por_autor[libro.autor]
-        4. Agregar el id_libro a self.indice_por_genero[libro.genero]
+        print(f"El libro {libro.id_libro} ha sido registrado exitosamente.")
 
-        Pista: Usa dict.setdefault(clave, []).append(valor) para los índices.
-
-        Args:
-            libro: Instancia de Libro a registrar
-
-        Raises:
-            ValueError: Si el id_libro ya está registrado
-        """
-        pass  # TODO: Implementar
 
     def registrar_usuario(self, usuario: Usuario) -> None:
         
-
-        
-        """
-        Registra un usuario en el sistema.
-
-        TODO:
-        1. Verificar que el id_usuario no exista ya en self.usuarios.
-           Si existe, lanzar ValueError("El id_usuario ya existe.")
-        2. Agregar el usuario al diccionario self.usuarios usando id_usuario como clave.
-
-        Args:
-            usuario: Instancia de Usuario a registrar
-
-        Raises:
-            ValueError: Si el id_usuario ya está registrado
-        """
-        pass  # TODO: Implementar
+        if usuario.id_usuario in self.usuarios:
+            raise ValueError(f"El usuario {usuario.id_usuario} ya existe.")
+        self.usuarios[usuario.id_usuario] = usuario
+        print(f"El usuario {usuario.id_usuario} se ha creado con exito.")
 
     # =========================================================================
     # OPERACIONES DE NEGOCIO (Principiantes - Paso 4)
     # =========================================================================
 
     def prestar(self, id_usuario: str, id_libro: str) -> str:
+
+        if id_usuario in self.usuarios:
+            if id_libro in self.catalogo:
+                if id_libro in self.prestamos_activos == True:
+                    return f"El libro ya está prestado"
+            raise ValueError("Libro no existente.")
+        raise ValueError("El usuario no existe.")
+
         """
         Realiza el préstamo de un libro a un usuario.
 
